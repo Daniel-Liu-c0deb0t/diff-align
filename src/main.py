@@ -4,8 +4,8 @@ from align import *
 opt = tf.optimizers.Adam(1.0)
 
 train_iter = 10
-t_str = "AATTTCCGG"
-y_str = "TTTCCCCGG"
+t_str = "ATATCAGG"
+y_str = "ATATCGG$"
 
 print("Target:", t_str)
 print("Initial:", y_str)
@@ -18,9 +18,10 @@ y = tf.Variable(y_init)
 for i in range(train_iter):
     with tf.GradientTape() as tape:
         ym = tf.nn.softmax(y)
-        _, loss = align(ym, t, gamma = 2.0, epsilon = 0.1)
+        _, loss = align(ym, t, gamma = 2.0, epsilon = 1.0)
 
     print("Loss:", loss.numpy())
+    print(prob_to_str(ym))
     opt.minimize(loss, [y], tape = tape)
 
 ym = tf.nn.softmax(y)
