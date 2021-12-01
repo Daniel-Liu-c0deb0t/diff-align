@@ -1,11 +1,11 @@
 import tensorflow as tf
 from align import *
 
-opt = tf.optimizers.Adam(1.0)
+opt = tf.optimizers.Adam(0.1)
 
 train_iter = 10
-t_str = "ATATCAGG"
-y_str = "ATATCGG$"
+t_str = "ATATCGG"
+y_str = "AAATCAGG"
 
 print("Target:", t_str)
 print("Initial:", y_str)
